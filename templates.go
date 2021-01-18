@@ -7,16 +7,16 @@ import (
 
 // Template represents a Postmark template.
 type Template struct {
-	Name               string      `json:"Name"`
+	Name               string      `json:"Name,omitempty"`
 	TemplateID         int         `json:"TemplateId,omitempty"`
-	Alias              string      `json:"Alias"`
-	Subject            string      `json:"Subject"`
-	HtmlBody           string      `json:"HtmlBody"`
-	TextBody           string      `json:"TextBody"`
-	AssociatedServerID int         `json:"AssociatedServerId"`
-	Active             bool        `json:"Active"`
-	TemplateType       string      `json:"TemplateType"`
-	LayoutTemplate     interface{} `json:"LayoutTemplate"`
+	Alias              string      `json:"Alias,omitempty"`
+	Subject            string      `json:"Subject,omitempty"`
+	HtmlBody           string      `json:"HtmlBody,omitempty"`
+	TextBody           string      `json:"TextBody,omitempty"`
+	AssociatedServerID int         `json:"AssociatedServerId,omitempty"`
+	Active             bool        `json:"Active,omitempty"`
+	TemplateType       string      `json:"TemplateType,omitempty"`
+	LayoutTemplate     interface{} `json:"LayoutTemplate,omitempty"`
 }
 
 // GetTemplate uses the `/templates/<id>` endpoint.  It requires a valid server
