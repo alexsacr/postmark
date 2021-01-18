@@ -8,7 +8,7 @@ import (
 // Template represents a Postmark template.
 type Template struct {
 	Name               string      `json:"Name"`
-	TemplateID         int         `json:"TemplateId"`
+	TemplateID         int         `json:"TemplateId,omitempty"`
 	Alias              string      `json:"Alias"`
 	Subject            string      `json:"Subject"`
 	HtmlBody           string      `json:"HtmlBody"`
@@ -30,6 +30,25 @@ func (c *Client) GetTemplate(templateID string) (*Template, error) {
 		expectedStatusCode: http.StatusOK,
 		respTarget:         &ret,
 		token:              c.ServerToken,
+	}
+
+	err := c.doRequest(req)
+	return &ret, err
+}
+
+// CreateTemplate takes a populated Template struct and returns a complete
+// version of the template (including ID) by POSTing to the /templates
+// endpoint.
+func (c *Client) CreateTemplate(newTmpl Template) (*Template, error) {
+	var ret Template
+
+	req := parameters{
+		method:             http.MethodPost,
+		endpoint:           "/templates",
+		expectedStatusCode: http.StatusOK,
+		respTarget:         &ret,
+		token:              c.ServerToken,
+		payload:            newTmpl,
 	}
 
 	err := c.doRequest(req)

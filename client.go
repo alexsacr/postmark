@@ -1,6 +1,7 @@
 package postmark
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -30,6 +31,7 @@ type parameters struct {
 	expectedStatusCode int
 	respTarget         interface{}
 	token              string
+	payload            interface{}
 }
 
 // NewClient returns a new client configured for use.
@@ -47,6 +49,14 @@ func (c *Client) doRequest(opts parameters) error {
 	req, err := http.NewRequest(opts.method, url, nil)
 	if err != nil {
 		return err
+	}
+
+	if opts.payload != nil {
+		reqBody, err := json.Marshal(opts.payload)
+		if err != nil {
+			return err
+		}
+		req.Body = ioutil.NopCloser(bytes.NewBuffer(reqBody))
 	}
 
 	req.Header.Add("Accept", "application/json")
