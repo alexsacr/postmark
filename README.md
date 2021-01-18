@@ -12,7 +12,7 @@ Under development.  You probably don't want to use this yet.
 
 ```go
 
-c := NewClient("account token", "server token")
+c := NewClient("account-token", "server-token")
 
-server, rr := c.GetServer("serverID")
+server, err := c.GetServer("serverID")
 ```
