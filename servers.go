@@ -9,16 +9,16 @@ import (
 type Server struct {
 	ID                         int      `json:"ID"`
 	Name                       string   `json:"Name"`
-	APITokens                  []string `json:"ApiTokens"`
+	ApiTokens                  []string `json:"ApiTokens"`
 	Color                      string   `json:"Color"`
-	SMTPAPIActivated           bool     `json:"SmtpApiActivated"`
+	SmtpApiActivated           bool     `json:"SmtpApiActivated"`
 	RawEmailEnabled            bool     `json:"RawEmailEnabled"`
 	ServerLink                 string   `json:"ServerLink"`
 	InboundAddress             string   `json:"InboundAddress"`
-	InboundHookURL             string   `json:"InboundHookUrl"`
-	BounceHookURL              string   `json:"BounceHookUrl"`
-	OpenHookURL                string   `json:"OpenHookUrl"`
-	DeliveryHookURL            string   `json:"DeliveryHookUrl"`
+	InboundHookUrl             string   `json:"InboundHookUrl"`
+	BounceHookUrl              string   `json:"BounceHookUrl"`
+	OpenHookUrl                string   `json:"OpenHookUrl"`
+	DeliveryHookUrl            string   `json:"DeliveryHookUrl"`
 	PostFirstOpenOnly          bool     `json:"PostFirstOpenOnly"`
 	InboundDomain              string   `json:"InboundDomain"`
 	InboundHash                string   `json:"InboundHash"`
@@ -26,7 +26,7 @@ type Server struct {
 	TrackOpens                 bool     `json:"TrackOpens"`
 	TrackLinks                 string   `json:"TrackLinks"`
 	IncludeBounceContentInHook bool     `json:"IncludeBounceContentInHook"`
-	ClickHookURL               string   `json:"ClickHookUrl"`
+	ClickHookUrl               string   `json:"ClickHookUrl"`
 	EnableSMTPAPIErrorHooks    bool     `json:"EnableSmtpApiErrorHooks"`
 }
 
