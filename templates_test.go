@@ -52,7 +52,29 @@ func TestCRUDTemplateIntegrationOK(t *testing.T) {
 	assert.Equal(t, newTmpl.TemplateType, readTmpl.TemplateType, "wrong type on readback")
 	assert.Equal(t, newTmpl.LayoutTemplate, readTmpl.LayoutTemplate, "wrong layout on readback")
 
+	// Update
+	upTmpl := Template{
+		Name:     readTmpl.Name + "-update",
+		Alias:    readTmpl.Alias + "-update",
+		Subject:  readTmpl.Subject + "-update",
+		HtmlBody: readTmpl.HtmlBody + "-update",
+		TextBody: readTmpl.TextBody + "-update",
+	}
+	err = c.UpdateTemplate(retT.Alias, upTmpl)
+	require.NoError(t, err, "got error updating template")
+
+	// Read
+	readTmpl, err = c.GetTemplate(upTmpl.Alias)
+	require.NoError(t, err, "error getting template")
+	require.NotEmpty(t, readTmpl, "got empty template from read")
+
+	assert.Equal(t, upTmpl.Name, readTmpl.Name, "wrong name on update readback")
+	assert.Equal(t, upTmpl.Alias, readTmpl.Alias, "wrong alias on update readback")
+	assert.Equal(t, upTmpl.Subject, readTmpl.Subject, "wrong subject on update readback")
+	assert.Equal(t, upTmpl.HtmlBody, readTmpl.HtmlBody, "wrong html on update readback")
+	assert.Equal(t, upTmpl.TextBody, readTmpl.TextBody, "wrong text on update readback")
+
 	// Delete
-	err = c.DeleteTemplate(newTmpl.Alias)
+	err = c.DeleteTemplate(upTmpl.Alias)
 	require.NoError(t, err, "got error deleting template")
 }

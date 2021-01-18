@@ -66,3 +66,17 @@ func (c *Client) DeleteTemplate(templateID string) error {
 
 	return c.doRequest(req)
 }
+
+// UpdateTemplate accepts a templateID (or alias) and a template object
+// with the values set you wish to change.
+func (c *Client) UpdateTemplate(templateID string, upTmpl Template) error {
+	req := parameters{
+		method:             http.MethodPut,
+		endpoint:           fmt.Sprintf("/templates/%s", templateID),
+		expectedStatusCode: http.StatusOK,
+		token:              c.ServerToken,
+		payload:            upTmpl,
+	}
+
+	return c.doRequest(req)
+}
