@@ -54,3 +54,16 @@ func (c *Client) CreateTemplate(newTmpl Template) (*Template, error) {
 	err := c.doRequest(req)
 	return &ret, err
 }
+
+// DeleteTemplate will delete a template based on its ID.  Alias is also
+// acceptable as an identifier.
+func (c *Client) DeleteTemplate(templateID string) error {
+	req := parameters{
+		method:             http.MethodDelete,
+		endpoint:           fmt.Sprintf("/templates/%s", templateID),
+		expectedStatusCode: http.StatusOK,
+		token:              c.ServerToken,
+	}
+
+	return c.doRequest(req)
+}

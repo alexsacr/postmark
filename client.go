@@ -96,6 +96,11 @@ func (c *Client) doRequest(opts parameters) error {
 		return fmt.Errorf("api error code %d: %s", apiErr.ErrorCode, apiErr.Message)
 	}
 
+	if opts.respTarget == nil {
+		// Short-circuit if we're not actually looking for the response
+		return nil
+	}
+
 	err = json.Unmarshal(body, opts.respTarget)
 	if err != nil {
 		return err
