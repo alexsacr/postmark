@@ -36,9 +36,8 @@ func (c *Client) GetTemplate(templateID string) (*Template, error) {
 	return &ret, err
 }
 
-// CreateTemplate takes a populated Template struct and returns a complete
-// version of the template (including ID) by POSTing to the /templates
-// endpoint.
+// CreateTemplate takes a populated Template struct and returns a template
+// struct that includes the ID.
 func (c *Client) CreateTemplate(newTmpl Template) (*Template, error) {
 	var ret Template
 
