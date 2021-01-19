@@ -44,6 +44,19 @@ func TestCRUDDomain(t *testing.T) {
 	assert.Equal(t, newDomain.Name, readDomain.Name, "name wrong")
 	assert.Equal(t, newDomain.ReturnPathDomain, readDomain.ReturnPathDomain, "return path wrong")
 
+	// Update
+	updatedDomain := Domain{
+		ReturnPathDomain: fmt.Sprintf("bounces-2.%s", testDomain),
+	}
+
+	err = c.UpdateDomain(strconv.Itoa(readDomain.ID), updatedDomain)
+	require.NoError(t, err, "error updating domain")
+
+	// Read
+	readDomain, err = c.GetDomain(strconv.Itoa(readDomain.ID))
+
+	assert.Equal(t, updatedDomain.ReturnPathDomain, readDomain.ReturnPathDomain, "return path not updated")
+
 	// Delete
 	err = c.DeleteDomain(strconv.Itoa(retDomain.ID))
 	require.NoError(t, err, "delete failed")
