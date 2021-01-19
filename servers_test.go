@@ -89,5 +89,6 @@ func TestCRUDServerIntegrationOK(t *testing.T) {
 	assert.Equal(t, updatedServer.EnableSMTPAPIErrorHooks, readSrv.EnableSMTPAPIErrorHooks, "errorhooks wrong")
 
 	// Delete
-
+	err = c.DeleteServer(strconv.Itoa(retSrv.ID))
+	require.NoError(t, err, "delete failed")
 }

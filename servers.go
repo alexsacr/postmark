@@ -78,3 +78,17 @@ func (c *Client) UpdateServer(serverID string, upsrvr Server) error {
 
 	return c.doRequest(req)
 }
+
+// DeleteServer will delete a server based on the serverID.  Note that server
+// deletion via API requires special access that requires a support ticket to
+// Postmark.
+func (c *Client) DeleteServer(serverID string) error {
+	req := parameters{
+		method:             http.MethodDelete,
+		endpoint:           fmt.Sprintf("/servers/%s", serverID),
+		expectedStatusCode: http.StatusOK,
+		token:              c.AccountToken,
+	}
+
+	return c.doRequest(req)
+}
