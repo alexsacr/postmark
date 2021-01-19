@@ -64,3 +64,17 @@ func (c *Client) CreateServer(newsrvr Server) (*Server, error) {
 	err := c.doRequest(req)
 	return &ret, err
 }
+
+// UpdateServer updates a server based on the passed struct.  Boolean values
+// will always be sent and *must* be set.
+func (c *Client) UpdateServer(serverID string, upsrvr Server) error {
+	req := parameters{
+		method:             http.MethodPut,
+		endpoint:           fmt.Sprintf("/servers/%s", serverID),
+		expectedStatusCode: http.StatusOK,
+		token:              c.AccountToken,
+		payload:            upsrvr,
+	}
+
+	return c.doRequest(req)
+}
