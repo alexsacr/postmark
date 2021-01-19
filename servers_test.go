@@ -1,14 +1,16 @@
 package postmark
 
 import (
+	"fmt"
 	"os"
+	"strconv"
 	"testing"
+	"time"
 
-	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
 
-func TestGetServerIntegrationOK(t *testing.T) {
+func TestCRUDServerIntegrationOK(t *testing.T) {
 	if os.Getenv("INTEGRATION") != "true" {
 		t.Skip()
 	}
@@ -16,14 +18,38 @@ func TestGetServerIntegrationOK(t *testing.T) {
 	accountToken := os.Getenv("PM_ACCOUNT_TOKEN")
 	require.NotEmpty(t, accountToken, "PM_ACCOUNT_TOKEN not set for integration test")
 
-	serverID := os.Getenv("PM_TEST_SERVER_ID")
-	require.NotEmpty(t, serverID, "PM_TEST_SERVER_ID not set for integration test")
-
 	c := NewClient(accountToken, "")
 
-	s, err := c.GetServer(serverID)
-	require.NoError(t, err, "errored getting server by ID")
-	require.NotEmpty(t, s, "empty server response")
+	timestamp := time.Now().Unix()
 
-	assert.NotEmpty(t, s.Name, "empty server name")
+	// Create
+	newServer := Server{
+		Name:                       fmt.Sprintf("lib-test-name-%d", timestamp),
+		Color:                      "Purple",
+		SmtpApiActivated:           true,
+		RawEmailEnabled:            true,
+		InboundHookUrl:             fmt.Sprintf("https://lib-test-domain-%d.com/inboundhook", timestamp),
+		IncludeBounceContentInHook: true,
+		PostFirstOpenOnly:          true,
+		TrackOpens:                 true,
+		TrackLinks:                 "HtmlAndText",
+		InboundSpamThreshold:       5,
+		EnableSMTPAPIErrorHooks:    true,
+	}
+
+	retSrv, err := c.CreateServer(newServer)
+	require.NoError(t, err, "errored creating server")
+	require.NotEmpty(t, retSrv, "got empty server returned")
+	require.NotEmpty(t, retSrv.ID, "missing server ID")
+
+	// Read
+	readSrv, err := c.GetServer(strconv.Itoa(retSrv.ID))
+	require.NoError(t, err, "error reading server")
+	require.NotEmpty(t, readSrv, "got empty server response on read")
+
+	// Update
+
+	// Read
+
+	// Delete
 }

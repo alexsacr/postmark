@@ -46,3 +46,21 @@ func (c *Client) GetServer(serverID string) (*Server, error) {
 	err := c.doRequest(req)
 	return &ret, err
 }
+
+// CreateServer creates a server based on the passed struct and returns a
+// server struct with the ID populated.
+func (c *Client) CreateServer(newsrvr Server) (*Server, error) {
+	var ret Server
+
+	req := parameters{
+		method:             http.MethodPost,
+		endpoint:           "/servers",
+		expectedStatusCode: http.StatusOK,
+		respTarget:         &ret,
+		token:              c.AccountToken,
+		payload:            newsrvr,
+	}
+
+	err := c.doRequest(req)
+	return &ret, err
+}
