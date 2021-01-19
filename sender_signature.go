@@ -5,6 +5,7 @@ import (
 	"net/http"
 )
 
+// SenderSignature represents a Postmark sender signature
 type SenderSignature struct {
 	Domain                        string `json:"Domain"`
 	EmailAddress                  string `json:"EmailAddress"`
