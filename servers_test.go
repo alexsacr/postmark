@@ -7,6 +7,7 @@ import (
 	"testing"
 	"time"
 
+	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
 
@@ -24,17 +25,15 @@ func TestCRUDServerIntegrationOK(t *testing.T) {
 
 	// Create
 	newServer := Server{
-		Name:                       fmt.Sprintf("lib-test-name-%d", timestamp),
-		Color:                      "Purple",
-		SmtpApiActivated:           true,
-		RawEmailEnabled:            true,
-		InboundHookUrl:             fmt.Sprintf("https://lib-test-domain-%d.com/inboundhook", timestamp),
-		IncludeBounceContentInHook: true,
-		PostFirstOpenOnly:          true,
-		TrackOpens:                 true,
-		TrackLinks:                 "HtmlAndText",
-		InboundSpamThreshold:       5,
-		EnableSMTPAPIErrorHooks:    true,
+		Name:                    fmt.Sprintf("lib-test-name-%d", timestamp),
+		Color:                   "purple",
+		SmtpApiActivated:        true,
+		RawEmailEnabled:         true,
+		InboundHookUrl:          fmt.Sprintf("https://lib-test-domain-%d.com/inboundhook", timestamp),
+		TrackOpens:              true,
+		TrackLinks:              "HtmlAndText",
+		InboundSpamThreshold:    5,
+		EnableSMTPAPIErrorHooks: true,
 	}
 
 	retSrv, err := c.CreateServer(newServer)
@@ -46,6 +45,17 @@ func TestCRUDServerIntegrationOK(t *testing.T) {
 	readSrv, err := c.GetServer(strconv.Itoa(retSrv.ID))
 	require.NoError(t, err, "error reading server")
 	require.NotEmpty(t, readSrv, "got empty server response on read")
+
+	assert.Equal(t, newServer.Name, retSrv.Name, "name wrong")
+	assert.Equal(t, newServer.Color, retSrv.Color, "color wrong")
+	assert.Equal(t, newServer.SmtpApiActivated, retSrv.SmtpApiActivated, "smtpapi wrong")
+	assert.Equal(t, newServer.RawEmailEnabled, retSrv.RawEmailEnabled, "rawemail wrong")
+	assert.Equal(t, newServer.InboundHookUrl, retSrv.InboundHookUrl, "hook url wrong")
+	assert.Equal(t, newServer.PostFirstOpenOnly, retSrv.PostFirstOpenOnly, "firstopen wrong")
+	assert.Equal(t, newServer.TrackOpens, retSrv.TrackOpens, "trackopens wrong")
+	assert.Equal(t, newServer.TrackLinks, retSrv.TrackLinks, "tracklinks wrong")
+	assert.Equal(t, newServer.InboundSpamThreshold, retSrv.InboundSpamThreshold, "spam threshold wrong")
+	assert.Equal(t, newServer.EnableSMTPAPIErrorHooks, retSrv.EnableSMTPAPIErrorHooks, "errorhooks wrong")
 
 	// Update
 

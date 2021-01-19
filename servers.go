@@ -7,26 +7,26 @@ import (
 
 // Server represents a Postmark server.
 type Server struct {
-	ID                         int      `json:"ID"`
-	Name                       string   `json:"Name"`
-	ApiTokens                  []string `json:"ApiTokens"`
-	Color                      string   `json:"Color"`
+	ID                         int      `json:"ID,omitempty"`
+	Name                       string   `json:"Name,omitempty"`
+	ApiTokens                  []string `json:"ApiTokens,omitempty"`
+	Color                      string   `json:"Color,omitempty"`
 	SmtpApiActivated           bool     `json:"SmtpApiActivated"`
 	RawEmailEnabled            bool     `json:"RawEmailEnabled"`
-	ServerLink                 string   `json:"ServerLink"`
-	InboundAddress             string   `json:"InboundAddress"`
-	InboundHookUrl             string   `json:"InboundHookUrl"`
-	BounceHookUrl              string   `json:"BounceHookUrl"`
-	OpenHookUrl                string   `json:"OpenHookUrl"`
-	DeliveryHookUrl            string   `json:"DeliveryHookUrl"`
+	ServerLink                 string   `json:"ServerLink,omitempty"`
+	InboundAddress             string   `json:"InboundAddress,omitempty"`
+	InboundHookUrl             string   `json:"InboundHookUrl,omitempty"`
+	BounceHookUrl              string   `json:"BounceHookUrl,omitempty"`
+	OpenHookUrl                string   `json:"OpenHookUrl,omitempty"`
+	DeliveryHookUrl            string   `json:"DeliveryHookUrl,omitempty"`
 	PostFirstOpenOnly          bool     `json:"PostFirstOpenOnly"`
-	InboundDomain              string   `json:"InboundDomain"`
-	InboundHash                string   `json:"InboundHash"`
-	InboundSpamThreshold       int      `json:"InboundSpamThreshold"`
+	InboundDomain              string   `json:"InboundDomain,omitempty"`
+	InboundHash                string   `json:"InboundHash,omitempty"`
+	InboundSpamThreshold       int      `json:"InboundSpamThreshold,omitempty"`
 	TrackOpens                 bool     `json:"TrackOpens"`
-	TrackLinks                 string   `json:"TrackLinks"`
+	TrackLinks                 string   `json:"TrackLinks,omitempty"`
 	IncludeBounceContentInHook bool     `json:"IncludeBounceContentInHook"`
-	ClickHookUrl               string   `json:"ClickHookUrl"`
+	ClickHookUrl               string   `json:"ClickHookUrl,omitempty"`
 	EnableSMTPAPIErrorHooks    bool     `json:"EnableSmtpApiErrorHooks"`
 }
 
