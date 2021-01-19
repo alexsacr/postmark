@@ -46,20 +46,15 @@ func TestCRUDServerIntegrationOK(t *testing.T) {
 	require.NoError(t, err, "error reading server")
 	require.NotEmpty(t, readSrv, "got empty server response on read")
 
-	assert.Equal(t, newServer.Name, retSrv.Name, "name wrong")
-	assert.Equal(t, newServer.Color, retSrv.Color, "color wrong")
-	assert.Equal(t, newServer.SmtpApiActivated, retSrv.SmtpApiActivated, "smtpapi wrong")
-	assert.Equal(t, newServer.RawEmailEnabled, retSrv.RawEmailEnabled, "rawemail wrong")
-	assert.Equal(t, newServer.InboundHookUrl, retSrv.InboundHookUrl, "hook url wrong")
-	assert.Equal(t, newServer.PostFirstOpenOnly, retSrv.PostFirstOpenOnly, "firstopen wrong")
-	assert.Equal(t, newServer.TrackOpens, retSrv.TrackOpens, "trackopens wrong")
-	assert.Equal(t, newServer.TrackLinks, retSrv.TrackLinks, "tracklinks wrong")
-	assert.Equal(t, newServer.InboundSpamThreshold, retSrv.InboundSpamThreshold, "spam threshold wrong")
-	assert.Equal(t, newServer.EnableSMTPAPIErrorHooks, retSrv.EnableSMTPAPIErrorHooks, "errorhooks wrong")
+	assert.Equal(t, newServer.Name, readSrv.Name, "name wrong")
+	assert.Equal(t, newServer.Color, readSrv.Color, "color wrong")
+	assert.Equal(t, newServer.SmtpApiActivated, readSrv.SmtpApiActivated, "smtpapi wrong")
+	assert.Equal(t, newServer.RawEmailEnabled, readSrv.RawEmailEnabled, "rawemail wrong")
+	assert.Equal(t, newServer.InboundHookUrl, readSrv.InboundHookUrl, "hook url wrong")
+	assert.Equal(t, newServer.PostFirstOpenOnly, readSrv.PostFirstOpenOnly, "firstopen wrong")
+	assert.Equal(t, newServer.TrackOpens, readSrv.TrackOpens, "trackopens wrong")
+	assert.Equal(t, newServer.TrackLinks, readSrv.TrackLinks, "tracklinks wrong")
+	assert.Equal(t, newServer.InboundSpamThreshold, readSrv.InboundSpamThreshold, "spam threshold wrong")
+	assert.Equal(t, newServer.EnableSMTPAPIErrorHooks, readSrv.EnableSMTPAPIErrorHooks, "errorhooks wrong")
 
-	// Update
-
-	// Read
-
-	// Delete
 }
