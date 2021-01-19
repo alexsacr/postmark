@@ -11,7 +11,7 @@ type Template struct {
 	TemplateID         int         `json:"TemplateId,omitempty"`
 	Alias              string      `json:"Alias,omitempty"`
 	Subject            string      `json:"Subject,omitempty"`
-	HtmlBody           string      `json:"HtmlBody,omitempty"`
+	HTMLBody           string      `json:"HtmlBody,omitempty"`
 	TextBody           string      `json:"TextBody,omitempty"`
 	AssociatedServerID int         `json:"AssociatedServerId,omitempty"`
 	Active             bool        `json:"Active,omitempty"`

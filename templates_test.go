@@ -27,7 +27,7 @@ func TestCRUDTemplateIntegrationOK(t *testing.T) {
 		Name:         fmt.Sprintf("lib-test-name-%d", timestamp),
 		Alias:        fmt.Sprintf("lib-test-alias-%d", timestamp),
 		Subject:      fmt.Sprintf("lib-test-subject-%d", timestamp),
-		HtmlBody:     fmt.Sprintf("lib-test-htmlbody-%d", timestamp),
+		HTMLBody:     fmt.Sprintf("lib-test-htmlbody-%d", timestamp),
 		TextBody:     fmt.Sprintf("lib-test-textbody-%d", timestamp),
 		Active:       true,
 		TemplateType: "Standard",
@@ -46,7 +46,7 @@ func TestCRUDTemplateIntegrationOK(t *testing.T) {
 	assert.Equal(t, newTmpl.Name, readTmpl.Name, "wrong name on readback")
 	assert.Equal(t, newTmpl.Alias, readTmpl.Alias, "wrong alias on readback")
 	assert.Equal(t, newTmpl.Subject, readTmpl.Subject, "wrong subject on readback")
-	assert.Equal(t, newTmpl.HtmlBody, readTmpl.HtmlBody, "wrong html on readback")
+	assert.Equal(t, newTmpl.HTMLBody, readTmpl.HTMLBody, "wrong html on readback")
 	assert.Equal(t, newTmpl.TextBody, readTmpl.TextBody, "wrong text on readback")
 	assert.Equal(t, newTmpl.Active, readTmpl.Active, "wrong active on readback")
 	assert.Equal(t, newTmpl.TemplateType, readTmpl.TemplateType, "wrong type on readback")
@@ -57,7 +57,7 @@ func TestCRUDTemplateIntegrationOK(t *testing.T) {
 		Name:     readTmpl.Name + "-update",
 		Alias:    readTmpl.Alias + "-update",
 		Subject:  readTmpl.Subject + "-update",
-		HtmlBody: readTmpl.HtmlBody + "-update",
+		HTMLBody: readTmpl.HTMLBody + "-update",
 		TextBody: readTmpl.TextBody + "-update",
 	}
 	err = c.UpdateTemplate(retT.Alias, upTmpl)
@@ -71,7 +71,7 @@ func TestCRUDTemplateIntegrationOK(t *testing.T) {
 	assert.Equal(t, upTmpl.Name, readTmpl.Name, "wrong name on update readback")
 	assert.Equal(t, upTmpl.Alias, readTmpl.Alias, "wrong alias on update readback")
 	assert.Equal(t, upTmpl.Subject, readTmpl.Subject, "wrong subject on update readback")
-	assert.Equal(t, upTmpl.HtmlBody, readTmpl.HtmlBody, "wrong html on update readback")
+	assert.Equal(t, upTmpl.HTMLBody, readTmpl.HTMLBody, "wrong html on update readback")
 	assert.Equal(t, upTmpl.TextBody, readTmpl.TextBody, "wrong text on update readback")
 
 	// Delete

@@ -27,9 +27,9 @@ func TestCRUDServerIntegrationOK(t *testing.T) {
 	newServer := Server{
 		Name:                    fmt.Sprintf("lib-test-name-%d", timestamp),
 		Color:                   "purple",
-		SmtpApiActivated:        true,
+		SMTPAPIActivated:        true,
 		RawEmailEnabled:         true,
-		InboundHookUrl:          fmt.Sprintf("https://lib-test-domain-%d.com/inboundhook", timestamp),
+		InboundHookURL:          fmt.Sprintf("https://lib-test-domain-%d.com/inboundhook", timestamp),
 		TrackOpens:              true,
 		TrackLinks:              "HtmlAndText",
 		InboundSpamThreshold:    5,
@@ -48,9 +48,9 @@ func TestCRUDServerIntegrationOK(t *testing.T) {
 
 	assert.Equal(t, newServer.Name, readSrv.Name, "name wrong")
 	assert.Equal(t, newServer.Color, readSrv.Color, "color wrong")
-	assert.Equal(t, newServer.SmtpApiActivated, readSrv.SmtpApiActivated, "smtpapi wrong")
+	assert.Equal(t, newServer.SMTPAPIActivated, readSrv.SMTPAPIActivated, "smtpapi wrong")
 	assert.Equal(t, newServer.RawEmailEnabled, readSrv.RawEmailEnabled, "rawemail wrong")
-	assert.Equal(t, newServer.InboundHookUrl, readSrv.InboundHookUrl, "hook url wrong")
+	assert.Equal(t, newServer.InboundHookURL, readSrv.InboundHookURL, "hook url wrong")
 	assert.Equal(t, newServer.PostFirstOpenOnly, readSrv.PostFirstOpenOnly, "firstopen wrong")
 	assert.Equal(t, newServer.TrackOpens, readSrv.TrackOpens, "trackopens wrong")
 	assert.Equal(t, newServer.TrackLinks, readSrv.TrackLinks, "tracklinks wrong")
@@ -61,9 +61,9 @@ func TestCRUDServerIntegrationOK(t *testing.T) {
 	updatedServer := Server{
 		Name:                    newServer.Name + "-updated",
 		Color:                   "blue",
-		SmtpApiActivated:        false,
+		SMTPAPIActivated:        false,
 		RawEmailEnabled:         false,
-		InboundHookUrl:          newServer.InboundHookUrl + "-updated",
+		InboundHookURL:          newServer.InboundHookURL + "-updated",
 		TrackOpens:              false,
 		TrackLinks:              "TextOnly",
 		InboundSpamThreshold:    4,
@@ -80,9 +80,9 @@ func TestCRUDServerIntegrationOK(t *testing.T) {
 
 	assert.Equal(t, updatedServer.Name, readSrv.Name, "name wrong")
 	assert.Equal(t, updatedServer.Color, readSrv.Color, "color wrong")
-	assert.Equal(t, updatedServer.SmtpApiActivated, readSrv.SmtpApiActivated, "smtpapi wrong")
+	assert.Equal(t, updatedServer.SMTPAPIActivated, readSrv.SMTPAPIActivated, "smtpapi wrong")
 	assert.Equal(t, updatedServer.RawEmailEnabled, readSrv.RawEmailEnabled, "rawemail wrong")
-	assert.Equal(t, updatedServer.InboundHookUrl, readSrv.InboundHookUrl, "hook url wrong")
+	assert.Equal(t, updatedServer.InboundHookURL, readSrv.InboundHookURL, "hook url wrong")
 	assert.Equal(t, updatedServer.TrackOpens, readSrv.TrackOpens, "trackopens wrong")
 	assert.Equal(t, updatedServer.TrackLinks, readSrv.TrackLinks, "tracklinks wrong")
 	assert.Equal(t, updatedServer.InboundSpamThreshold, readSrv.InboundSpamThreshold, "spam threshold wrong")
